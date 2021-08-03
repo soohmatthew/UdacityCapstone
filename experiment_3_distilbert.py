@@ -15,7 +15,7 @@ import logging
 import os
 
 from utils import *
-from train import train_model
+from train import train_distilbert_model
 
 if __name__ == '__main__':
     # If there's a GPU available...
@@ -86,7 +86,7 @@ if __name__ == '__main__':
                                                 num_warmup_steps = 0, # Default value in run_glue.py
                                                 num_training_steps = total_steps)
 
-    model = train_model(model,
+    model = train_distilbert_model(model,
                     optimizer,
                     scheduler,
                     train_dataloader,
