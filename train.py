@@ -327,14 +327,6 @@ def train_distilbert_model(model,
       # For each batch of training data...
       for step, batch in enumerate(tqdm(train_dataloader)):
 
-          # # Progress update every 40 batches.
-          # if step % 40 == 0 and not step == 0:
-          #     # Calculate elapsed time in minutes.
-          #     elapsed = format_time(time.time() - t0)
-              
-          #     # Report progress.
-          #     print('  Batch {:>5,}  of  {:>5,}.    Elapsed: {:}.'.format(step, len(train_dataloader), elapsed))
-
           # Unpack this training batch from our dataloader. 
           #
           # As we unpack the batch, we'll also copy each tensor to the GPU using the 
