@@ -1,0 +1,7 @@
+tqdm==4.42.1
+pandas==0.23.0
+torch==1.6.0+cu101
+numpy==1.18.1
+sentencepiece==0.1.96
+scikit_learn==0.24.2
+transformers==4.9.1
