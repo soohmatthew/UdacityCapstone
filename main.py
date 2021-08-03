@@ -1,6 +1,4 @@
 # Function to calculate the accuracy of our predictions vs labels
-from utils import *
-from train import train_model
 import numpy as np
 import torch
 import pandas as pd
@@ -15,6 +13,9 @@ import random
 from sklearn.metrics import classification_report
 import logging
 import os
+
+from utils import *
+from train import train_model
 
 if __name__ == '__main__':
     # If there's a GPU available...
