@@ -37,9 +37,7 @@ if __name__ == '__main__':
     if not os.path.exists("logs"):
         os.makedirs("logs")
 
-    logger = logging.getLogger(f"logs/base_test_{timing}.log")
-
-    logging.basicConfig(filename = f"base_test_{timing}.log",
+    logging.basicConfig(filename = f"logs/base_test_{timing}.log",
                         filemode='a',
                                 format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                                 datefmt='%H:%M:%S',
