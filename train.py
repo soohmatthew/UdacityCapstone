@@ -237,8 +237,8 @@ def train_model(model,
           total_eval_accuracy += flat_accuracy(logits, label_ids)
           
           
-          epoch_pred = np.concatenate(epoch_pred, pred_flat)
-          epoch_labels = np.concatenate(epoch_labels, label_ids)
+          epoch_pred = np.concatenate([epoch_pred, pred_flat])
+          epoch_labels = np.concatenate([epoch_labels, label_ids])
 
       # Report the final accuracy for this validation run.
       avg_val_accuracy = total_eval_accuracy / len(validation_dataloader)
