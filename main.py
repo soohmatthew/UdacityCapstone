@@ -33,9 +33,6 @@ if __name__ == '__main__':
         print('No GPU available, using the CPU instead.')
         device = torch.device("cpu")
 
-    for handler in logging.root.handlers:
-        logging.root.removeHandler(handler)
-
     timing = str(strftime("%Y_%m_%d__%H_%M_%S", gmtime()))
     if not os.path.exists("logs"):
         os.makedirs("logs")
@@ -45,7 +42,8 @@ if __name__ == '__main__':
     logging.basicConfig(filename = f"base_test_{timing}.log",
                         filemode='a',
                                 format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                                datefmt='%H:%M:%S')
+                                datefmt='%H:%M:%S',
+                                level=logging.INFO)
 
     # Set variables
     max_length = 100
