@@ -44,7 +44,7 @@ if __name__ == '__main__':
                                 level=logging.INFO)
 
     # Set variables
-    max_length = 100
+    max_length = 50
     learning_rate = 1e-5
     epsilon = 1e-8 # args.adam_epsilon  - default is 1e-8.
     epochs = 3
