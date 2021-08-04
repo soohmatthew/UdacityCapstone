@@ -65,7 +65,7 @@ def create_data_loader(tokenizer,
   # The DataLoader needs to know our batch size for training, so we specify it 
   # here. For fine-tuning BERT on a specific task, the authors recommend a batch 
   # size of 16 or 32.
-  batch_size = 16
+  batch_size = 32
 
   # Create the DataLoaders for our training and validation sets.
   # We'll take training samples in random order. 
