@@ -324,7 +324,8 @@ def train_bert_model_experiment(max_length):
                     optimizer,
                     scheduler,
                     train_dataloader,
-                    validation_dataloader
+                    validation_dataloader,
+                    epochs
                     )
 
     if not os.path.exists("model"):
@@ -397,7 +398,8 @@ def train_model_experiment(model_name, max_length):
                     optimizer,
                     scheduler,
                     train_dataloader,
-                    validation_dataloader
+                    validation_dataloader,
+                    epochs
                     )
 
     if not os.path.exists("model"):
