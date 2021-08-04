@@ -18,21 +18,6 @@ from utils import *
 from train import train_model_experiment, train_bert_model_experiment
 
 if __name__ == '__main__':
-    # If there's a GPU available...
-    if torch.cuda.is_available():    
-
-        # Tell PyTorch to use the GPU.    
-        device = torch.device("cuda")
-
-        print('There are %d GPU(s) available.' % torch.cuda.device_count())
-
-        print('We will use the GPU:', torch.cuda.get_device_name(0))
-
-    # If not...
-    else:
-        print('No GPU available, using the CPU instead.')
-        device = torch.device("cpu")
-
     max_length = 50
 
     model = train_bert_model_experiment(max_length)
