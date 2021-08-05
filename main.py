@@ -18,9 +18,13 @@ from utils import *
 from train import train_model_experiment, train_bert_model_experiment
 
 if __name__ == '__main__':
+    # Set params
     max_length = 50
-
+    dataset = "data/train.csv"
+    
+    # Train BERT
     model = train_bert_model_experiment(max_length)
 
     for model_name in ["xlm-roberta-base", "distilbert-base-multilingual-cased", "xlm-roberta-large"]:
+        
         model = train_model_experiment(model_name, max_length)

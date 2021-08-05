@@ -265,7 +265,7 @@ def train_model(model,
 
   return(model)
 
-def train_bert_model_experiment(max_length):
+def train_bert_model_experiment(max_length, dataset):
     for handler in logging.root.handlers:
         logging.root.removeHandler(handler)
 
@@ -295,7 +295,8 @@ def train_bert_model_experiment(max_length):
     tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
 
     train_dataloader, validation_dataloader = create_data_loader(tokenizer, 
-                                                                max_length)
+                                                                max_length, 
+                                                                dataset)
 
 
     model = BertForSequenceClassification.from_pretrained("bert-base-multilingual-cased",
@@ -338,7 +339,7 @@ def train_bert_model_experiment(max_length):
 
     return model
 
-def train_model_experiment(model_name, max_length):
+def train_model_experiment(model_name, max_length, dataset):
 
     for handler in logging.root.handlers:
         logging.root.removeHandler(handler)
@@ -369,7 +370,8 @@ def train_model_experiment(model_name, max_length):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     train_dataloader, validation_dataloader = create_data_loader(tokenizer, 
-                                                                max_length)
+                                                                max_length,
+                                                                dataset)
 
 
     model = AutoModelForSequenceClassification.from_pretrained(model_name,

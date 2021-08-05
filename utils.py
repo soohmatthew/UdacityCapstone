@@ -5,10 +5,25 @@ import torch
 from torch.utils.data import TensorDataset, random_split
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 
+if torch.cuda.is_available():    
+
+        # Tell PyTorch to use the GPU.    
+        device = torch.device("cuda")
+
+        print('There are %d GPU(s) available.' % torch.cuda.device_count())
+
+        print('We will use the GPU:', torch.cuda.get_device_name(0))
+
+    # If not...
+else:
+    print('No GPU available, using the CPU instead.')
+    device = torch.device("cpu")
+
 def create_data_loader(tokenizer,
-                       max_length):
+                       max_length,
+                       dataset):
   
-  df = pd.read_csv("data/train_translated.csv")
+  df = pd.read_csv(dataset)
 
   df = df.dropna()
 
@@ -83,3 +98,46 @@ def create_data_loader(tokenizer,
           )
   
   return train_dataloader, validation_dataloader
+
+def get_test_results(model_path, tokenizer, max_length):
+    dataset = "data/test.csv"
+
+    model = torch.load(model_path)
+    model.eval()
+
+    epoch_pred = np.array([])
+    epoch_labels = np.array([])
+
+    # Create data loader
+    test_dataloader = create_data_loader(tokenizer,
+                       max_length,
+                       dataset)
+
+    for batch in test_dataloader:
+        b_input_ids = batch[0].to(device)
+        b_input_mask = batch[1].to(device)
+        b_labels = batch[2].to(device)
+        
+        # Tell pytorch not to bother with constructing the compute graph during
+        # the forward pass, since this is only needed for backprop (training).
+        with torch.no_grad():        
+
+            # Forward pass, calculate logit predictions.
+            # token_type_ids is the same as the "segment ids", which 
+            # differentiates sentence 1 and 2 in 2-sentence tasks.
+            result = model(b_input_ids, 
+                        #token_type_ids=None, 
+                        attention_mask=b_input_mask,
+                        labels=b_labels,
+                        return_dict=True)            
+
+        # Move logits and labels to CPU
+        logits = logits.detach().cpu().numpy()
+        pred_flat = np.argmax(logits, axis=1).flatten()
+        epoch_pred = np.concatenate([epoch_pred, pred_flat])
+    
+    df = pd.read_csv(dataset)
+    df['prediction'] = epoch_pred
+    df[['id', 'prediction']].to_csv("submission.csv")
+    return df[['id', 'prediction']]
+
