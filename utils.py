@@ -100,7 +100,7 @@ def create_data_loader(tokenizer,
   return train_dataloader, validation_dataloader
 
 def get_test_results(model_path, tokenizer, max_length):
-    dataset = "data/test.csv"
+    dataset_path = "data/test.csv"
 
     model = torch.load(model_path)
     model.eval()
@@ -109,7 +109,7 @@ def get_test_results(model_path, tokenizer, max_length):
     epoch_labels = np.array([])
 
     # Create data loader
-    df = pd.read_csv(dataset)
+    df = pd.read_csv(dataset_path)
 
     df = df.dropna()
 
@@ -179,4 +179,3 @@ def get_test_results(model_path, tokenizer, max_length):
     df['prediction'] = epoch_pred
     df[['id', 'prediction']].to_csv("submission.csv")
     return df[['id', 'prediction']]
-
