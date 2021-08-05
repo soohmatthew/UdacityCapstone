@@ -176,6 +176,6 @@ def get_test_results(model_path, tokenizer, max_length):
         epoch_pred = np.concatenate([epoch_pred, pred_flat])
     
     df = pd.read_csv(dataset_path)
-    df['prediction'] = epoch_pred
+    df['prediction'] = [int(i) for i in epoch_pred.tolist()]
     df[['id', 'prediction']].to_csv("submission.csv")
     return df[['id', 'prediction']]
