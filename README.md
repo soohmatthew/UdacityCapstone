@@ -29,18 +29,18 @@ The training set contains 12,120 entries, with the columns (i) id, (ii) premise,
 ### Class distribution
 Out of the 12,120 entries in the training set, we observe an equal split in 3 classes (0 for entailment, 1 for neutral, 2 for contradiction).
 
-<img src="assets/class_distribution.png" alt="class distribution" width="200"/>
+<img src="assets/class_distribution.png" alt="class distribution" width="400"/>
 
 ### Language Distribution
 That being said, there is an uneven representation in the languages, with English being overrepresented in the dataset. This is expected, as it was explained that the dataset was originally an English dataset that was translated into multiple languages.
 
-<img src="assets/language_count.png" alt="language distribution" width="200"/>
+<img src="assets/language_count.png" alt="language distribution" width="400"/>
 
 ### Word count
 
 A histogram of the distribution of word count is also plotted, to understand the nature of the sentences in the dataset. The premise seems to be longer than the hypothesis, with a median of 26 words, while the hypothesis only has a median of 10 words.
 
-<img src="assets/word count.png" alt="word count" width="200"/>
+<img src="assets/word count.png" alt="word count" width="400"/>
 
 ## Methodology
 
