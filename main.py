@@ -23,7 +23,8 @@ if __name__ == '__main__':
     dataset = "data/train_translated.csv"
 
     # Train BERT
-    #model = train_bert_model_experiment(max_length, dataset)
+    model = train_bert_model_experiment(max_length, dataset)
 
-    for model_name in ["xlm-roberta-large"]:
+    # Train the other models
+    for model_name in ["distilbert-base-multilingual-cased", "xlm-roberta-base", "xlm-roberta-large"]:
         model = train_model_experiment(model_name, max_length, dataset)
